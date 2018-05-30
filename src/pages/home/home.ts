@@ -10,12 +10,13 @@ import { AngularFireAuth } from "angularfire2/auth";
 })
 export class HomePage {
 
-  facebook = {
-    loggedin: false,
+  provider = {
+    loggedin : false,
     name: '',
     profilePicture:'',
     email:''
   }
+
 
   constructor(private fire: AngularFireAuth,
     public navCtrl: NavController) {
@@ -25,17 +26,28 @@ export class HomePage {
   loginWithFacebook(){
     this.fire.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
     .then( res => {
-      this.facebook.loggedin = true;
-      this.facebook.name= res.user.displayName;
-      this.facebook.email = res.user.email;
-      this.facebook.profilePicture = res.user.photoURL;
+      this.provider.loggedin = true;
+      this.provider.name= res.user.displayName;
+      this.provider.email = res.user.email;
+      this.provider.profilePicture = res.user.photoURL;
 
     })
   }
 
-  logoutOfFacebook(){
+  loginWithGoogle(){
+    this.fire.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .then( res => {
+      this.provider.loggedin = true;
+      this.provider.name= res.user.displayName;
+      this.provider.email = res.user.email;
+      this.provider.profilePicture = res.user.photoURL;
+
+    })
+  }
+
+  logout(){
     this.fire.auth.signOut();
-    this.facebook.loggedin= false;
+    this.provider.loggedin= false;
   }
 
 }
