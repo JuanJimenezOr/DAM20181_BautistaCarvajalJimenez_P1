@@ -34,6 +34,17 @@ export class HomePage {
     })
   }
 
+  loginWithTwitter(){
+    this.fire.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider())
+    .then( res => {
+      this.provider.loggedin = true;
+      this.provider.name= res.user.displayName;
+      this.provider.email = res.user.email;
+      this.provider.profilePicture = res.user.photoURL;
+
+    })
+  }
+
   loginWithGoogle(){
     this.fire.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .then( res => {

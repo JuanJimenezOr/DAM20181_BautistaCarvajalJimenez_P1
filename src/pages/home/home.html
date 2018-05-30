@@ -10,6 +10,7 @@
 
  <button ion-button (click)="loginWithFacebook()" *ngIf="!provider.loggedin" >Login With Facebook</button>
  <button ion-button (click)="loginWithGoogle()" *ngIf="!provider.loggedin" >Login With Google</button>
+ <button ion-button (click)="loginWithTwitter()" *ngIf="!provider.loggedin" >Login With Twiiter</button>
 
  <ion-card *ngIf="provider.loggedin">
   <img src="{{provider.profilePicture}}"/>
