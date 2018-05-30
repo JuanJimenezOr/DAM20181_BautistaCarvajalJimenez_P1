@@ -7,6 +7,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+var config = {
+  apiKey: "AIzaSyD19nNRuYSZjUA1k8BnUC4uEnnZ6-lo4EE",
+  authDomain: "dam-logins.firebaseapp.com",
+  databaseURL: "https://dam-logins.firebaseio.com",
+  projectId: "dam-logins",
+  storageBucket: "dam-logins.appspot.com",
+  messagingSenderId: "837890507231"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -14,7 +26,9 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
