@@ -10,6 +10,10 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { HttpModule } from "@angular/http";
+import { RegisterPage } from '../pages/register/register';
+
+
 var config = {
   apiKey: "AIzaSyD19nNRuYSZjUA1k8BnUC4uEnnZ6-lo4EE",
   authDomain: "dam-logins.firebaseapp.com",
@@ -22,22 +26,26 @@ var config = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    RegisterPage,
     MyApp,
     HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
