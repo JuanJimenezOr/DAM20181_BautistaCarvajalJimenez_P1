@@ -1,10 +1,11 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 import  firebase  from "firebase";
 import { AngularFireAuth } from "angularfire2/auth";
 
 import { RegisterPage } from '../register/register';
+import {SuccesfulPage} from '../succesful/succesful'
 
 
 
@@ -27,6 +28,7 @@ export class HomePage {
 
   constructor(private fire: AngularFireAuth,
     public ref: ChangeDetectorRef,
+    private alertCtrl: AlertController,
     public navCtrl: NavController) {
   }
 
@@ -64,8 +66,25 @@ export class HomePage {
     })
   }
 
+  alert(message:string){
+    this.alertCtrl.create({
+      title: 'Alert',
+      subTitle: message,
+      buttons: ['OK']
+    }).present();
+    
+  }
+
   login(){
-  console.log('entro con ', this.user.value, this.pass.value)
+    this.fire.auth.signInWithEmailAndPassword(this.user.value, this.pass.value)
+    .then(data => {
+        console.log("obtener dato", this.fire.auth.currentUser);
+        this.alert('You are logged');
+        this.navCtrl.push(SuccesfulPage);
+    })
+    .catch(error => {
+      console.log('obtener error', error)
+    })
 }
 
 register(){

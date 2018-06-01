@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { HttpModule } from "@angular/http";
 import { RegisterPage } from '../pages/register/register';
+import { SuccesfulPage } from "../pages/succesful/succesful";
 
 
 var config = {
@@ -27,7 +28,8 @@ var config = {
   declarations: [
     MyApp,
     HomePage,
-    RegisterPage
+    RegisterPage,
+    SuccesfulPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ var config = {
   entryComponents: [
     RegisterPage,
     MyApp,
-    HomePage
+    HomePage,
+    SuccesfulPage
   ],
   providers: [
     StatusBar,
