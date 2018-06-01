@@ -33,36 +33,41 @@ export class HomePage {
   }
 
   loginWithFacebook(){
-    this.fire.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-    .then( res => {
+    this.fire.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider())
+    .then( () => {
+      this.fire.auth.getRedirectResult().then(res => {
       this.provider.loggedin = true;
       this.provider.name= res.user.displayName;
       this.provider.email = res.user.email;
       this.provider.profilePicture = res.user.photoURL;
-
+      this.ref.detectChanges();
+      });
     })
   }
 
   loginWithTwitter(){
-    this.fire.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider())
-    .then( res => {
+    this.fire.auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider())
+    .then( () => {
+      this.fire.auth.getRedirectResult().then(res => {
       this.provider.loggedin = true;
       this.provider.name= res.user.displayName;
       this.provider.email = res.user.email;
       this.provider.profilePicture = res.user.photoURL;
-
+      this.ref.detectChanges();
+      });
     })
   }
 
   loginWithGoogle(){
-    this.fire.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    .then( res => {
+    this.fire.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+    .then( () => {
+      this.fire.auth.getRedirectResult().then(res => {
       this.provider.loggedin = true;
       this.provider.name= res.user.displayName;
       this.provider.email = res.user.email;
       this.provider.profilePicture = res.user.photoURL;
-    
-
+      this.ref.detectChanges();
+    });
     })
   }
 
